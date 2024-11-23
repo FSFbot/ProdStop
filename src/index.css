@@ -1,0 +1,66 @@
+:root{
+  --primary-color: #084080;
+  --secundary-color: #041931;
+  --third-color:#201E1D;
+}
+* {
+  cursor: url('assets/mouse4-2.png'), default !important;
+  cursor: url('assets/mouse4-2.png'), pointer !important;
+  cursor: url('assets/mouse4-2.png'), crosshair !important;
+  cursor: url('assets/mouse4-2.png'), move !important;
+  cursor: url('assets/mouse4-2.png'), text !important;
+  cursor: url('assets/mouse4-2.png'), wait !important;
+  cursor: url('assets/mouse4-2.png'), help !important;
+  cursor: url('assets/mouse4-2.png'), not-allowed !important;
+  cursor: url('assets/mouse4-2.png'), grab !important;
+  cursor: url('assets/mouse4-2.png'), grabbing !important;
+  cursor: url('assets/mouse4-2.png'), zoom-in !important;
+  cursor: url('assets/mouse4-2.png'), zoom-out !important;
+  cursor: url('assets/mouse4-2.png'), ew-resize !important;
+  cursor: url('assets/mouse4-2.png'), ns-resize !important;
+  cursor: url('assets/mouse4-2.png'), nesw-resize !important;
+  cursor: url('assets/mouse4-2.png'), nwse-resize !important;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(270deg, #084081, #041931,#042E5F);
+  background-size: 400% 400%; /* Aumenta o tamanho do fundo para criar um efeito de animação */
+  animation: gradientAnimation 10s ease infinite; /* Animação com duração de 15 segundos que se repete infinitamente */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-family: 'Arial', sans-serif;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes slideUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

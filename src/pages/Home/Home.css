@@ -1,0 +1,211 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  
+}
+.home-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+
+  }
+
+  
+
+  .mobile-app-container{
+    background: linear-gradient(270deg, #f35e5e, #f7ff86,#ffcc67);
+    background-size: 400% 400%; /* Aumenta o tamanho do fundo para criar um efeito de animação */
+    animation: gradientAnimation 10s ease infinite; /* Animação com duração de 15 segundos que se repete infinitamente */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+  }
+
+ 
+  .road {
+    position: absolute;
+    bottom:  40px;
+    width: 140vw;
+    height: 60px;
+    background-color: #2e2e2e;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transform: perspective(500px) rotateX(30deg);
+    border-radius: 5px;
+    /* transition: top 0.2s ease, left 0.2s ease; */
+  }
+  .road:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg,#fff 0%,#fff 70%,#525252 70%, #858585 100%);
+    background-size: 110px;
+    animation: animate 0.5s linear infinite;
+  }
+
+  .road:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: #333333;
+    bottom: -30px;
+    transform-origin: top;
+    transform: perspective(500px) rotateX(-25deg);
+  }
+
+  @keyframes animate{
+    0% {
+      background-position: 0px 0px;
+    }
+    10%,
+    80% {
+      background-position: 0px 0px;
+    }
+    100% {
+      background-position: -10px 0px;
+    }
+  }
+  
+
+  .road2 {
+    position: absolute;
+    top:  0px;
+    width: 140vw;
+    height: 60px;
+    background-color: #2e2e2e;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transform: perspective(500px) rotateX(30deg);
+    border-radius: 5px;
+    /* transition: top 0.2s ease, left 0.2s ease; */
+  }
+  .road2:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg,#fff 0%,#fff 70%,#525252 70%, #858585 100%);
+    background-size: 110px;
+    animation: animate2 0.5s linear infinite;
+  }
+
+  .road2:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: #333333;
+    bottom: -30px;
+    transform-origin: top;
+    transform: perspective(500px) rotateX(-25deg);
+  }
+
+  @keyframes animate2{
+    0%{
+      background-position: 0px;
+    }
+    100%{
+      background-position: 120px;
+    }
+  }
+  
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 50px; 
+  
+  .logo-image-anm {
+    width: 450px; 
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7)) blur(0.8px);
+    
+  }
+
+  .logo-image {
+    width: 450px; 
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7)) blur(0.8px);
+    animation: shake 0.1s ease-in-out infinite;
+    
+  }
+}
+
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  10% { transform: translate(-2px, -2px) rotate(-2deg); }
+  20% { transform: translate(2px, -2px) rotate(2deg); }
+  30% { transform: translate(-2px, 2px) rotate(-2deg); }
+  40% { transform: translate(2px, 2px) rotate(2deg); }
+  50% { transform: translate(-2px, -2px) rotate(-2deg); }
+  60% { transform: translate(2px, -2px) rotate(2deg); }
+  70% { transform: translate(-2px, 2px) rotate(-2deg); }
+  80% { transform: translate(2px, 2px) rotate(2deg); }
+  90% { transform: translate(-2px, -2px) rotate(-2deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Apply the animation to the image */
+
+
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-top: 20px;
+    gap: 50px; 
+  }
+  
+  .menu-button {
+    background-color: #f74440; 
+    color: #ffffff;
+    border: none;
+    size: 200px !important;
+    padding: 10px 40px; 
+    font-size: 1.5rem;
+    border-radius: 20px; 
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%); 
+    transition: transform 0.2s; 
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  .menu-button:hover {
+    transform: scale(1.1); 
+  }
+  
+  .settings-icon {
+    width: 60px; 
+    margin-top: 20px; 
+    margin-left:2.5rem ;
+}

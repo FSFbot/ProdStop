@@ -1,0 +1,62 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    z-index: 999;
+}
+
+.css-u3mvvq-MuiPaper-root-MuiDialog-paper {
+    background-color: transparent !important;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--primary-color) !important;
+    text-align: center;
+    padding: 20px;
+    height: 400px;
+    width: 390px;
+    position: relative;
+
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color) !important;
+
+}
+
+.close-button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}
+
+.octagon-icon {
+    background-color: var(--primary-color);
+    height: 31px;
+    color: var(--secundary-color);
+    font-size: 32px !important;
+}
+
+.modal-message {
+    color: var(--secundary-color);
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+}

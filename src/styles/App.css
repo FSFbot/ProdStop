@@ -1,0 +1,11 @@
+/* src/index.css (ou App.css) */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffc94d; /* Cor de fundo global */
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  height: 100vh;
+}
