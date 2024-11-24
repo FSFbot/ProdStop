@@ -27,6 +27,8 @@ const GameScreen = () => {
   const [playAudio, setplayAudio] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [ isDoublePoints, setIsDoublePoints] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   // Abertura do Modal de Validação
   const handleValidatedClose = () => {
@@ -102,6 +104,15 @@ const GameScreen = () => {
     });
 
   };
+ 
+  const handleDoublePoints = () => {
+    setIsDoublePoints(true);
+    
+  };
+  const handleComplete = () => {
+    setIsComplete(true);
+    
+};
 
   // Função que lida com o evento de parada do WebSocket
   const handleStopListener = async () => {
@@ -116,8 +127,8 @@ const GameScreen = () => {
     const payload = {
       code_lobby: userInfo.roomCode,
       id_user: userInfo.id, // Identifica unicamente o jogador
-      double_points: false, // Exemplo: Jogador 1 recebe pontos duplos
-      autocomplete: false, // Exemplo: Jogador 2 pode ter preenchimento automático
+      double_points: isDoublePoints, // Exemplo: Jogador 1 recebe pontos duplos
+      autocomplete: isComplete, // Exemplo: Jogador 2 pode ter preenchimento automático
       receive_payload: currentPlayerThemes, // Apenas temas do jogador atual
     };
 
@@ -131,7 +142,6 @@ const GameScreen = () => {
       setTimeLeft(time);
       setIsStopOpen(true);
       setIsDrawLetterOpen(true);
-
       // Limpar campos de entrada
       setSelectedThemes({});
     }, delay); // Aplica o atraso baseado no jogador
@@ -197,10 +207,10 @@ const GameScreen = () => {
         />
       )}
       <Box sx={{ display: 'flex', alingItems: 'center', gap: 2}}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleDoublePoints}>
           Dobrar Pontos
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="secondary" onclick = {handleComplete}>
           Auto Completar
         </Button>
       </Box>

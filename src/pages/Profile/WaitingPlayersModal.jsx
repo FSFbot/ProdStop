@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import loading_gif from './Loading-Stop.gif';
 import './gif.css'
 import { useWebSocket } from '../../services/WebSocketContext';
+import BackgroundAudio from '../../shared/components/Audio/BackgroundAudio';
+import aguardandoJogador from '../../assets/aguardar-jogadores.wav';
+
 
 const Themes = ({ gameThemes }) => {
   return (
@@ -31,8 +34,8 @@ const PlayerBox = ({ username }) => (
   </Box>
 );
 
-const GameModal = ({open, onClose, gameCode, game_themes }) => {
-  const { roomCode, handleCreateRoom,setIsConnected, handleEnterRoom, themes, socket } = useWebSocket(); // Acessando o WebSocket
+const GameModal = ({ open, onClose, gameCode, game_themes }) => {
+  const { roomCode, handleCreateRoom, setIsConnected, handleEnterRoom, themes, socket } = useWebSocket(); // Acessando o WebSocket
   const navigate = useNavigate();
   const [userinfo, setUserInfo] = useState({});
   const [newPlayer, setNewPlayer] = useState(false);
@@ -117,18 +120,18 @@ const GameModal = ({open, onClose, gameCode, game_themes }) => {
         return;
       }
       onBack();
-    }} 
-    fullWidth maxWidth="sm" PaperProps={{
-      sx: {
-        borderRadius: '20px',
-        backgroundColor: '#084080',
-        border: '10px solid #201E1D',
-        width: '600px',
-        height: '600px',
-        display: 'flex',
-        flexDirection: 'column',
-      },
-    }}>
+    }}
+      fullWidth maxWidth="sm" PaperProps={{
+        sx: {
+          borderRadius: '20px',
+          backgroundColor: '#084080',
+          border: '10px solid #201E1D',
+          width: '600px',
+          height: '600px',
+          display: 'flex',
+          flexDirection: 'column',
+        },
+      }}>
       <DialogTitle sx={{
         textAlign: 'center', color: '#FFFFFF', fontWeight: 'bold', fontSize: '25px', backgroundColor: '#201E1D'
       }}>
@@ -191,6 +194,7 @@ const GameModal = ({open, onClose, gameCode, game_themes }) => {
             <img src={loading_gif} alt="loading" className="gif"></img>
           </div>
         )):(<div></div>)} */}
+        <BackgroundAudio audioSrc={aguardandoJogador} onAudioEnd={true} />
 
 
       </DialogContent>
