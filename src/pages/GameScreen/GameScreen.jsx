@@ -196,6 +196,14 @@ const GameScreen = () => {
           finalLetter={gameInfo.letters && gameInfo.letters[round - 1] ? gameInfo.letters[round - 1].toUpperCase() : ""}
         />
       )}
+      <Box sx={{ display: 'flex', alingItems: 'center', gap: 2}}>
+        <Button variant="contained" color="primary">
+          Dobrar Pontos
+        </Button>
+        <Button variant="contained" color="secondary">
+          Auto Completar
+        </Button>
+      </Box>
 
       {isStopOpen && (
         <StopModal onClose={handleStopClose} onLastRound={round >= (gameInfo.rounds || 0) - 1} />
@@ -270,7 +278,7 @@ const GameScreen = () => {
       </Button>
 
       {!isDrawLetterOpen && validateStop && <BackgroundAudio audioSrc={tempoRodada} onAudioEnd={playAudio} />}
-      {isStopOpen  && isDrawLetterOpen && <BackgroundAudio audioSrc={stopRodada} onAudioEnd={playAudio} />}
+      {isStopOpen && isDrawLetterOpen && <BackgroundAudio audioSrc={stopRodada} onAudioEnd={playAudio} />}
 
     </Box>
   );

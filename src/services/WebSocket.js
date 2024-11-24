@@ -8,16 +8,15 @@ const socket = io('wss://stop-backend.up.railway.app', { autoConnect: false });
 const WebSocket2 = () => {
   const navigate = useNavigate();
 
-  // Estados para gerenciar informações e conexão
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [roomCode, setRoomCode] = useState('');
   const [themes, setThemes] = useState([]);
   const [roundTime, setRoundTime] = useState(0);
   const [isInLobby, setLobby] = useState(false);
-  const eventsRegistered = useRef(false); // Rastreia registro de eventos
+  const eventsRegistered = useRef(false); 
 
   useEffect(() => {
-    // Conectar o socket se ainda não estiver conectado
+
     if (!socket.connected) {
       socket.connect();
     }
@@ -70,10 +69,9 @@ const WebSocket2 = () => {
 
     const handleValidate = (data) => {
       console.log('Validação recebida:');
-      // Lógica de validação adicional aqui
+     
     };
 
-    // Registrar eventos apenas uma vez
     if (!eventsRegistered.current) {
       eventsRegistered.current = true;
       socket.on('connect', handleConnect);
@@ -84,7 +82,7 @@ const WebSocket2 = () => {
       socket.on('return_stop',handleResultsStop)
     }
 
-    // Cleanup ao desmontar
+
     return () => {
       if (eventsRegistered.current) {
         eventsRegistered.current = false;
@@ -99,7 +97,7 @@ const WebSocket2 = () => {
   }, []);
 
 
-  // Funções para emitir eventos do WebSocket
+ 
   const sendMessage = (event, data) => {
     if (socket) {
       socket.emit(event, data);
@@ -148,7 +146,6 @@ const WebSocket2 = () => {
     }
   };
 
-  // Retornar socket e funções relacionadas
   return {
     socket,
     isConnected,
