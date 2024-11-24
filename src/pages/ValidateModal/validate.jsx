@@ -111,6 +111,7 @@ function ValidationModal({ open, close, round }) {
           borderRadius: '10px',
           boxShadow: 24,
           p: 4,
+          overflowY: 'auto',
         }}
       >
 
