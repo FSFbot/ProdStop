@@ -15,6 +15,9 @@ import UseAnimationToggle from './animations/animation.jsx';
 import LoadingScreen from './pages/LoadingScreen/loading_screen.jsx';
 import PodiumScreen from './pages/PodiumScreen/PodiumScreen.jsx';
 import { WebSocketProvider } from './services/WebSocketContext.js';
+import BackgroundAudio from './shared/components/Audio/BackgroundAudio';
+import aguardandoJogador from './assets/aguardar-jogadores.wav';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -33,7 +36,7 @@ function App() {
       <Router>
         <MainContent />
       </Router>
-   
+
   );
 }
 
@@ -41,36 +44,48 @@ function App() {
 function MainContent() {
   const location = useLocation();
 
+  const routesWithAudio = [
+    '/',
+    '/login',
+    '/register',
+    '/profile',
+    '/game-options',
+    '/loading',
+  ];
+
+  const shouldPlayAudio = routesWithAudio.includes(location.pathname);
+
   // Define a rota em que você não quer mostrar a animação
   const hideAnimationOnRoutes = ['/special'];
 
   return (
-    <ThemeProvider theme={theme}>
-      {!hideAnimationOnRoutes.includes(location.pathname) && <UseAnimationToggle />}
-    <WebSocketProvider>
+      <ThemeProvider theme={theme}>
+        {!hideAnimationOnRoutes.includes(location.pathname) && <UseAnimationToggle />}
+        <WebSocketProvider>
 
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-          <Route path="/game-options" element={<GameOptions />} />
-          <Route path="/draw-letter" element={<PrivateRoute><DrawLetter /></PrivateRoute>} />
-          <Route path="/game-screen" element={<PrivateRoute><GameScreen /></PrivateRoute>} />
-          <Route path="/stop" element={<PrivateRoute><StopScreen /></PrivateRoute>} />
-          {/* <Route path="/validation" element={<ValidationScreen />} /> */}
-          <Route path="/waiting-room" element={<PrivateRoute><WaitingRoom /></PrivateRoute>} /> {/* Nova rota */}
-          <Route path="/loading" element={<PrivateRoute><LoadingScreen /></PrivateRoute>} />
-          <Route path="/results" element={<PrivateRoute><PodiumScreen /></PrivateRoute>} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path="/game-options" element={<GameOptions />} />
+              <Route path="/draw-letter" element={<PrivateRoute><DrawLetter /></PrivateRoute>} />
+              <Route path="/game-screen" element={<PrivateRoute><GameScreen /></PrivateRoute>} />
+              <Route path="/stop" element={<PrivateRoute><StopScreen /></PrivateRoute>} />
+              {/* <Route path="/validation" element={<ValidationScreen />} /> */}
+              <Route path="/waiting-room" element={<PrivateRoute><WaitingRoom /></PrivateRoute>} /> {/* Nova rota */}
+              <Route path="/loading" element={<PrivateRoute><LoadingScreen /></PrivateRoute>} />
+              <Route path="/results" element={<PrivateRoute><PodiumScreen /></PrivateRoute>} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
 
+            {shouldPlayAudio && <BackgroundAudio audioSrc={aguardandoJogador} onAudioEnd={true} />}
 
-      </div>
-    </WebSocketProvider>
+          </div>
+        </WebSocketProvider>
 
-    </ThemeProvider>
+      </ThemeProvider>
   );
   function PrivateRoute({ children }) {
     const token = localStorage.getItem('userInfo');

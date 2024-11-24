@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import loading_gif from './Loading-Stop.gif';
 import './gif.css'
 import { useWebSocket } from '../../services/WebSocketContext';
-import BackgroundAudio from '../../shared/components/Audio/BackgroundAudio';
-import aguardandoJogador from '../../assets/aguardar-jogadores.wav';
 
 
 const Themes = ({ gameThemes }) => {
@@ -194,7 +192,7 @@ const GameModal = ({ open, onClose, gameCode, game_themes }) => {
             <img src={loading_gif} alt="loading" className="gif"></img>
           </div>
         )):(<div></div>)} */}
-        <BackgroundAudio audioSrc={aguardandoJogador} onAudioEnd={true} />
+
 
 
       </DialogContent>

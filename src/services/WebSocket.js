@@ -14,7 +14,10 @@ const WebSocket2 = () => {
   const [themes, setThemes] = useState([]);
   const [roundTime, setRoundTime] = useState(0);
   const [isInLobby, setLobby] = useState(false);
-  const eventsRegistered = useRef(false); // Rastreia registro de eventos
+  const eventsRegistered = useRef(false);
+
+  
+  // Rastreia registro de eventos
 
   useEffect(() => {
     // Conectar o socket se ainda não estiver conectado
@@ -27,7 +30,7 @@ const WebSocket2 = () => {
       console.log('Conectado ao WebSocket');
     };
 
-    const handleDisconnect = () => {
+   const handleDisconnect = () => {
       setIsConnected(false);
       console.log('Desconectado do WebSocket');
     };
@@ -152,6 +155,7 @@ const WebSocket2 = () => {
   return {
     socket,
     isConnected,
+    setIsConnected,
     roomCode,
     themes,
     sendMessage,
