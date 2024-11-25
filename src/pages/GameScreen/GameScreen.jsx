@@ -29,6 +29,7 @@ const GameScreen = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [ isDoublePoints, setIsDoublePoints] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  
 
   // Abertura do Modal de Validação
   const handleValidatedClose = () => {
@@ -117,19 +118,19 @@ const GameScreen = () => {
   // Função que lida com o evento de parada do WebSocket
   const handleStopListener = async () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
-    const isPlayerOne = userInfo.host === true; // Identificar jogador 1 ou 2
-    const delay = isPlayerOne ? 0 : 500; // Jogador 1 envia imediatamente, jogador 2 após 1 segundo
+    const isPlayerOne = userInfo.host === true; 
+    const delay = isPlayerOne ? 0 : 500; 
 
-    // Capturar temas apenas para este jogador
+  
     const currentPlayerThemes = { ...selectedThemesRef.current };
 
-    // Construir payload específico para este jogador
+  
     const payload = {
       code_lobby: userInfo.roomCode,
-      id_user: userInfo.id, // Identifica unicamente o jogador
-      double_points: isDoublePoints, // Exemplo: Jogador 1 recebe pontos duplos
-      autocomplete: isComplete, // Exemplo: Jogador 2 pode ter preenchimento automático
-      receive_payload: currentPlayerThemes, // Apenas temas do jogador atual
+      id_user: userInfo.id, 
+      double_points: isDoublePoints, 
+      autocomplete: isComplete, 
+      receive_payload: currentPlayerThemes, 
     };
 
     console.log("Aguardando envio do payload. Delay:", delay);
@@ -183,38 +184,45 @@ const GameScreen = () => {
   };
 
   return (
-
+   
     <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width: '100vw',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        flexDirection: 'column',
-        position: 'relative',
-        zIndex: 200,
-      }}
-    >
-      {isDrawLetterOpen && (
-        <DrawLetter
-          onClose={handleDrawLetterClose}
-          rounds={round}
-          numRounds={gameInfo.rounds || 0}
-          finalLetter={gameInfo.letters && gameInfo.letters[round - 1] ? gameInfo.letters[round - 1].toUpperCase() : ""}
-        />
-      )}
-      <Box sx={{ display: 'flex', alingItems: 'center', gap: 2}}>
-        <Button variant="contained" color="primary" onClick={handleDoublePoints}>
+    sx={{
+      alignItems: 'center',
+      height: '100vh',
+      width: '100vw',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      flexDirection: 'column',
+      position: 'relative',
+      zIndex: 200,
+    }}
+  >
+    {userInfo.id_type_role === 4 && (
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleDoublePoints}
+        >
           Dobrar Pontos
         </Button>
-        <Button variant="contained" color="secondary" onclick = {handleComplete}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleComplete}
+        >
           Auto Completar
         </Button>
       </Box>
-
+    )}
+    {isDrawLetterOpen && (
+      <DrawLetter
+        onClose={handleDrawLetterClose}
+        rounds={round}
+        numRounds={gameInfo.rounds || 0}
+        finalLetter={gameInfo.letters && gameInfo.letters[round - 1] ? gameInfo.letters[round - 1].toUpperCase() : ""}
+      />
+    )}
       {isStopOpen && (
         <StopModal onClose={handleStopClose} onLastRound={round >= (gameInfo.rounds || 0) - 1} />
       )}
