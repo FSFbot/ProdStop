@@ -146,7 +146,6 @@ const GameScreen = () => {
       // Incrementar rodada e resetar o cronômetro
       setTimeLeft(time);
       setIsStopOpen(true);
-      setIsDrawLetterOpen(true);
       // Limpar campos de entrada
       setSelectedThemes({});
     }, delay); // Aplica o atraso baseado no jogador
@@ -176,7 +175,8 @@ const GameScreen = () => {
 
     }, 300); // Abre ValidationModal após um pequeno delay
     setTimeout(() => {
-      setIsValidatedOpen(false); // Fecha o ValidationModal
+      setIsValidatedOpen(false);
+      setIsDrawLetterOpen(true); 
       if (round >= gameInfo.rounds) {
         handleReturnStop('return_stop', {
           code_lobby: JSON.parse(localStorage.getItem('userInfo'))?.roomCode,
