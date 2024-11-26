@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function PodiumScreen({ isDoublePoints }) {
+function PodiumScreen() {
   const navigate = useNavigate();
   const [gameInfo,setGameInfo]=useState({})
+  const [double_points, setDoublePoints] = useState(false);
   // Simulando dados dos vencedores
   const players = [
     { name: 'Jogador 1', points: 100, position: 1 },
@@ -24,8 +25,10 @@ function PodiumScreen({ isDoublePoints }) {
   };
 
   useEffect(() => {
+    const isDoublePoints = JSON.parse(localStorage.getItem('isDoublePoints'));
     const storedGameInfo = JSON.parse(localStorage.getItem('gameInfo'));
     setGameInfo(storedGameInfo);
+    setDoublePoints(isDoublePoints);
   }, []);
 
   return (
@@ -84,7 +87,7 @@ function PodiumScreen({ isDoublePoints }) {
             {gameInfo.results ? gameInfo?.results[0].username : ""}
             </Typography>
             <Typography sx={{ fontWeight: 'bold', fontSize: '14px', color: '#fff' }}>
-            {gameInfo.results ? (isDoublePoints ? gameInfo.results[0].score * 2 : gameInfo.results[0].score) : ""}
+            {gameInfo.results ? (double_points ? gameInfo.results[0].score * 2 : gameInfo.results[0].score) : ""}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -108,7 +111,7 @@ function PodiumScreen({ isDoublePoints }) {
               {gameInfo.results ? gameInfo?.results[1].username : ""}
             </Typography>
             <Typography sx={{ fontWeight: 'bold', fontSize: '14px', color: '#fff' }}>
-            {gameInfo.results ? (isDoublePoints ? gameInfo.results[1].score * 2 : gameInfo.results[1].score) : ""}
+            {gameInfo.results ? (double_points ? gameInfo.results[1].score * 2 : gameInfo.results[1].score) : ""}
             </Typography>
           </Box>
       </Box>
