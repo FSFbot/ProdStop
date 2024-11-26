@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function PodiumScreen() {
+function PodiumScreen({ isDoublePoints }) {
   const navigate = useNavigate();
   const [gameInfo,setGameInfo]=useState({})
   // Simulando dados dos vencedores
@@ -84,7 +84,7 @@ function PodiumScreen() {
             {gameInfo.results ? gameInfo?.results[0].username : ""}
             </Typography>
             <Typography sx={{ fontWeight: 'bold', fontSize: '14px', color: '#fff' }}>
-            {gameInfo.results ? gameInfo?.results[0].score : ""}
+            {gameInfo.results ? (isDoublePoints ? gameInfo.results[0].score * 2 : gameInfo.results[0].score) : ""}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -108,7 +108,7 @@ function PodiumScreen() {
               {gameInfo.results ? gameInfo?.results[1].username : ""}
             </Typography>
             <Typography sx={{ fontWeight: 'bold', fontSize: '14px', color: '#fff' }}>
-            {gameInfo.results ? gameInfo?.results[1].score : ""}
+            {gameInfo.results ? (isDoublePoints ? gameInfo.results[1].score * 2 : gameInfo.results[1].score) : ""}
             </Typography>
           </Box>
       </Box>

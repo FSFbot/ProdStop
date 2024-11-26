@@ -15,7 +15,7 @@ const GameScreen = () => {
   const location = useLocation();
   const { time } = location.state || { time: 0 };  // Definindo um valor padrão de 0 para o tempo
   const navigate = useNavigate();
-
+  const [showEffect, setShowEffect] = useState(false);
   const [selectedThemes, setSelectedThemes] = useState({});
   const [timeLeft, setTimeLeft] = useState(parseInt(time) || 0);  // Garantir que o tempo seja um número
   const [isDrawLetterOpen, setIsDrawLetterOpen] = useState(true);
@@ -29,6 +29,7 @@ const GameScreen = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [ isDoublePoints, setIsDoublePoints] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [isDoublePointsDisabled, setIsDoublePointsDisabled] = useState(false);
   
 
   // Abertura do Modal de Validação
@@ -107,8 +108,11 @@ const GameScreen = () => {
   };
  
   const handleDoublePoints = () => {
+    setShowEffect(true);
+    setTimeout(() => setShowEffect(false), 2000);
     setIsDoublePoints(true);
-    
+    setIsDoublePointsDisabled(true)
+
   };
   const handleComplete = () => {
     setIsComplete(true);
@@ -173,7 +177,6 @@ const GameScreen = () => {
     }, 300); // Abre ValidationModal após um pequeno delay
     setTimeout(() => {
       setIsValidatedOpen(false); // Fecha o ValidationModal
-      // TODO: VERIFICAR EMIT DO RETURN STOP
       if (round >= gameInfo.rounds) {
         handleReturnStop('return_stop', {
           code_lobby: JSON.parse(localStorage.getItem('userInfo'))?.roomCode,
@@ -187,6 +190,8 @@ const GameScreen = () => {
    
     <Box
     sx={{
+      display: 'flex',
+      justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
       width: '100vw',
@@ -203,6 +208,7 @@ const GameScreen = () => {
           variant="contained"
           color="primary"
           onClick={handleDoublePoints}
+          disabled={isDoublePointsDisabled} 
         >
           Dobrar Pontos
         </Button>
@@ -214,6 +220,11 @@ const GameScreen = () => {
           Auto Completar
         </Button>
       </Box>
+    )}
+    {showEffect && (
+      <Typography sx={{ position: 'absolute', top: '10%', color: 'yellow', fontSize: '24px' }}>
+        Pontos Dobrados!
+      </Typography>
     )}
     {isDrawLetterOpen && (
       <DrawLetter
