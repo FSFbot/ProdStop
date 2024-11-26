@@ -44,6 +44,7 @@ export default function Register() {
   return (
     <Box
       sx={{
+        marginLeft: '40rem',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
