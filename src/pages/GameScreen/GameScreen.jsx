@@ -110,7 +110,8 @@ const GameScreen = () => {
   const handleDoublePoints = () => {
     setShowEffect(true);
     setTimeout(() => setShowEffect(false), 2000);
-    setIsDoublePoints(true);
+    setIsDoublePoints();
+    localStorage.setItem('doublePoints', true);
     setIsDoublePointsDisabled(true)
 
   };
@@ -211,13 +212,6 @@ const GameScreen = () => {
           disabled={isDoublePointsDisabled} 
         >
           Dobrar Pontos
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={handleComplete}
-        >
-          Auto Completar
         </Button>
       </Box>
     )}
